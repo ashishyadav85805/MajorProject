@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NGOManagementSystem.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -57,6 +57,19 @@ namespace NGOManagementSystem.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Category", x => x.CategoryId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Payment",
+                columns: table => new
+                {
+                    OrderDetailId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PaymentMethods = table.Column<string>(type: "varchar(50)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payment", x => x.OrderDetailId);
                 });
 
             migrationBuilder.CreateTable(
@@ -174,7 +187,6 @@ namespace NGOManagementSystem.Migrations
                     DonorName = table.Column<string>(type: "varchar(50)", nullable: false),
                     Address = table.Column<string>(type: "varchar(100)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "varchar(50)", nullable: false),
-                    Amount = table.Column<string>(type: "varchar(50)", nullable: false),
                     CategoryId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -185,6 +197,33 @@ namespace NGOManagementSystem.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Category",
                         principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DonorDetail",
+                columns: table => new
+                {
+                    OrderDetailId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DonorId = table.Column<int>(nullable: false),
+                    Amount = table.Column<string>(type: "varchar(50)", nullable: false),
+                    PaymentMethod = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DonorDetail", x => x.OrderDetailId);
+                    table.ForeignKey(
+                        name: "FK_DonorDetail_DonorInfo_DonorId",
+                        column: x => x.DonorId,
+                        principalTable: "DonorInfo",
+                        principalColumn: "DonorId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DonorDetail_Payment_PaymentMethod",
+                        column: x => x.PaymentMethod,
+                        principalTable: "Payment",
+                        principalColumn: "OrderDetailId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -228,6 +267,16 @@ namespace NGOManagementSystem.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_DonorDetail_DonorId",
+                table: "DonorDetail",
+                column: "DonorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DonorDetail_PaymentMethod",
+                table: "DonorDetail",
+                column: "PaymentMethod");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_DonorInfo_CategoryId",
                 table: "DonorInfo",
                 column: "CategoryId");
@@ -251,13 +300,19 @@ namespace NGOManagementSystem.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "DonorInfo");
+                name: "DonorDetail");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "DonorInfo");
+
+            migrationBuilder.DropTable(
+                name: "Payment");
 
             migrationBuilder.DropTable(
                 name: "Category");

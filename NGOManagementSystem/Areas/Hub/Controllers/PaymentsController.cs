@@ -35,7 +35,7 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
             }
 
             var payment = await _context.Payment
-                .FirstOrDefaultAsync(m => m.OrderDetailId == id);
+                .FirstOrDefaultAsync(m => m.DonorDetailId == id);
             if (payment == null)
             {
                 return NotFound();
@@ -55,7 +55,7 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderDetailId,PaymentMethods")] Payment payment)
+        public async Task<IActionResult> Create([Bind("DonorDetailId,BankName,AccountNO,IFSC,PaymentMethods")] Payment payment)
         {
             if (ModelState.IsValid)
             {
@@ -87,9 +87,9 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OrderDetailId,PaymentMethods")] Payment payment)
+        public async Task<IActionResult> Edit(int id, [Bind("DonorDetailId,BankName,AccountNO,IFSC,PaymentMethods")] Payment payment)
         {
-            if (id != payment.OrderDetailId)
+            if (id != payment.DonorDetailId)
             {
                 return NotFound();
             }
@@ -103,7 +103,7 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PaymentExists(payment.OrderDetailId))
+                    if (!PaymentExists(payment.DonorDetailId))
                     {
                         return NotFound();
                     }
@@ -126,7 +126,7 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
             }
 
             var payment = await _context.Payment
-                .FirstOrDefaultAsync(m => m.OrderDetailId == id);
+                .FirstOrDefaultAsync(m => m.DonorDetailId == id);
             if (payment == null)
             {
                 return NotFound();
@@ -148,7 +148,7 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
 
         private bool PaymentExists(int id)
         {
-            return _context.Payment.Any(e => e.OrderDetailId == id);
+            return _context.Payment.Any(e => e.DonorDetailId == id);
         }
     }
 }

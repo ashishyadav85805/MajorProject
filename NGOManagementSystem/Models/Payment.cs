@@ -10,7 +10,24 @@ namespace NGOManagementSystem.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int OrderDetailId { get; set; }
+        public int DonorDetailId { get; set; }
+
+
+        [Required]
+        [Column(TypeName = "varchar(50)")]
+        [Display(Name = "Bank Name")]
+        public string BankName { get; set; }
+
+        [Required]
+        [Column(TypeName = "varchar(50)")]
+        [Display(Name = "Bank Account NO.")]
+        public string  AccountNO { get; set; }
+
+        [Required]
+        [Column(TypeName = "varchar(50)")]
+        [Display(Name = "IFSC NO.")]
+        public string IFSC { get; set; }
+
 
 
         [Required(ErrorMessage = "{0} cannot be empty!")]

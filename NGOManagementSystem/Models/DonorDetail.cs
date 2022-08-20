@@ -29,16 +29,15 @@ namespace NGOManagementSystem.Models
         public string Amount { get; set; }
 
 
-        //#region Navigation Properties to the Menu Model
+        #region Navigation Properties to the OrderDetail Model
 
-        //[Display(Name = "Name of the Donor")]
-        //public int DonorName { get; set; }
+        [Display(Name = "Choose Category")]
+        public int CategoryId { get; set; }
 
-        //[ForeignKey(nameof(DonorDetail.DonorName))]
 
-        //public DonorInfo DonorInfo{ get; set; }
-
-        //#endregion
+        [ForeignKey(nameof(DonorDetail.CategoryId))]
+        public Category Category { get; set; }
+        #endregion
 
 
 

@@ -10,8 +10,8 @@ using NGOManagementSystem.Data;
 namespace NGOManagementSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220819061059_UpdateInfoAndDeatils")]
-    partial class UpdateInfoAndDeatils
+    [Migration("20220820161738_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

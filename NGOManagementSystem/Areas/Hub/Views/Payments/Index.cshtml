@@ -13,6 +13,15 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.BankName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountNO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IFSC)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.PaymentMethods)
             </th>
             <th></th>
@@ -22,12 +31,21 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.BankName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountNO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IFSC)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.PaymentMethods)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.OrderDetailId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.OrderDetailId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.OrderDetailId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.DonorDetailId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.DonorDetailId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.DonorDetailId">Delete</a>
             </td>
         </tr>
 }

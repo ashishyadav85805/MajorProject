@@ -21,7 +21,7 @@ namespace NGOManagementSystem.Models
 
         #region Navigation Properties to the donorinfo Model
 
-        public ICollection<DonorInfo> DonorInfo { get; set; }
+        public ICollection<DonorDetail> DonorDetails { get; set; }
 
         #endregion
 

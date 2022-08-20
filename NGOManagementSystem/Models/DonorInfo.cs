@@ -31,19 +31,15 @@ namespace NGOManagementSystem.Models
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
 
-       
+        [Required(ErrorMessage = "{0} cannot be empty")]
+        [Column(TypeName = "varchar(100)")]
+        [Display(Name = "E-Mail Id")]
+
+        public string Email { get; set; }
 
 
 
-        #region Navigation Properties to the OrderDetail Model
-
-        [Display(Name = "Choose Category")]
-        public int CategoryId { get; set; }
-
-
-        [ForeignKey(nameof(DonorInfo.CategoryId))]
-        public Category Category { get; set; }
-        #endregion
+      
 
         #region Navigation Properties to the OrderDetail Model
         public ICollection<DonorDetail> DonorDetails { get; set; }

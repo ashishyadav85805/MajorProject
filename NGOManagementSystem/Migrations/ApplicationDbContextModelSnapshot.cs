@@ -246,6 +246,9 @@ namespace NGOManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<int>("DonorId")
                         .HasColumnType("int");
 
@@ -253,6 +256,8 @@ namespace NGOManagementSystem.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("OrderDetailId");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("DonorId");
 
@@ -272,12 +277,13 @@ namespace NGOManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("DonorName")
                         .IsRequired()
                         .HasColumnType("varchar(50)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -285,23 +291,33 @@ namespace NGOManagementSystem.Migrations
 
                     b.HasKey("DonorId");
 
-                    b.HasIndex("CategoryId");
-
                     b.ToTable("DonorInfo");
                 });
 
             modelBuilder.Entity("NGOManagementSystem.Models.Payment", b =>
                 {
-                    b.Property<int>("OrderDetailId")
+                    b.Property<int>("DonorDetailId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AccountNO")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("BankName")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("IFSC")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("PaymentMethods")
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 
-                    b.HasKey("OrderDetailId");
+                    b.HasKey("DonorDetailId");
 
                     b.ToTable("Payment");
                 });
@@ -359,6 +375,12 @@ namespace NGOManagementSystem.Migrations
 
             modelBuilder.Entity("NGOManagementSystem.Models.DonorDetail", b =>
                 {
+                    b.HasOne("NGOManagementSystem.Models.Category", "Category")
+                        .WithMany("DonorDetails")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("NGOManagementSystem.Models.DonorInfo", "DonorInfo")
                         .WithMany("DonorDetails")
                         .HasForeignKey("DonorId")
@@ -368,15 +390,6 @@ namespace NGOManagementSystem.Migrations
                     b.HasOne("NGOManagementSystem.Models.Payment", "Payments")
                         .WithMany("DonorDetails")
                         .HasForeignKey("PaymentMethod")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("NGOManagementSystem.Models.DonorInfo", b =>
-                {
-                    b.HasOne("NGOManagementSystem.Models.Category", "Category")
-                        .WithMany("DonorInfo")
-                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

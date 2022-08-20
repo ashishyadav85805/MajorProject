@@ -10,8 +10,8 @@ using NGOManagementSystem.Data;
 namespace NGOManagementSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220818125342_Initial")]
-    partial class Initial
+    [Migration("20220820163911_AddNEWModel")]
+    partial class AddNEWModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -237,6 +237,37 @@ namespace NGOManagementSystem.Migrations
                     b.ToTable("Category");
                 });
 
+            modelBuilder.Entity("NGOManagementSystem.Models.DonorDetail", b =>
+                {
+                    b.Property<int>("OrderDetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Amount")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DonorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PaymentMethod")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderDetailId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("DonorId");
+
+                    b.HasIndex("PaymentMethod");
+
+                    b.ToTable("DonorDetail");
+                });
+
             modelBuilder.Entity("NGOManagementSystem.Models.DonorInfo", b =>
                 {
                     b.Property<int>("DonorId")
@@ -248,16 +279,13 @@ namespace NGOManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
-                    b.Property<string>("Amount")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("DonorName")
                         .IsRequired()
                         .HasColumnType("varchar(50)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -265,9 +293,35 @@ namespace NGOManagementSystem.Migrations
 
                     b.HasKey("DonorId");
 
-                    b.HasIndex("CategoryId");
-
                     b.ToTable("DonorInfo");
+                });
+
+            modelBuilder.Entity("NGOManagementSystem.Models.Payment", b =>
+                {
+                    b.Property<int>("DonorDetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AccountNO")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("BankName")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("IFSC")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("PaymentMethods")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("DonorDetailId");
+
+                    b.ToTable("Payment");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -321,11 +375,23 @@ namespace NGOManagementSystem.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("NGOManagementSystem.Models.DonorInfo", b =>
+            modelBuilder.Entity("NGOManagementSystem.Models.DonorDetail", b =>
                 {
                     b.HasOne("NGOManagementSystem.Models.Category", "Category")
-                        .WithMany("DonorInfo")
+                        .WithMany("DonorDetails")
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NGOManagementSystem.Models.DonorInfo", "DonorInfo")
+                        .WithMany("DonorDetails")
+                        .HasForeignKey("DonorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NGOManagementSystem.Models.Payment", "Payments")
+                        .WithMany("DonorDetails")
+                        .HasForeignKey("PaymentMethod")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

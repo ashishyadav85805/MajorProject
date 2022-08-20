@@ -23,7 +23,7 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
         // GET: Hub/DonorDetails
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.DonorDetail.Include(d => d.DonorInfo).Include(d => d.Payments);
+            var applicationDbContext = _context.DonorDetail.Include(d => d.Category).Include(d => d.DonorInfo).Include(d => d.Payments);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -36,6 +36,7 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
             }
 
             var donorDetail = await _context.DonorDetail
+                .Include(d => d.Category)
                 .Include(d => d.DonorInfo)
                 .Include(d => d.Payments)
                 .FirstOrDefaultAsync(m => m.OrderDetailId == id);
@@ -50,8 +51,9 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
         // GET: Hub/DonorDetails/Create
         public IActionResult Create()
         {
+            ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryName");
             ViewData["DonorId"] = new SelectList(_context.DonorInfo, "DonorId", "DonorName");
-            ViewData["PaymentMethod"] = new SelectList(_context.Payment, "OrderDetailId", "PaymentMethods");
+            ViewData["PaymentMethod"] = new SelectList(_context.Payment, "DonorDetailId", "PaymentMethods");
             return View();
         }
 
@@ -60,7 +62,7 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderDetailId,DonorId,Amount,PaymentMethod")] DonorDetail donorDetail)
+        public async Task<IActionResult> Create([Bind("OrderDetailId,DonorId,Amount,CategoryId,PaymentMethod")] DonorDetail donorDetail)
         {
             if (ModelState.IsValid)
             {
@@ -68,8 +70,9 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryName", donorDetail.CategoryId);
             ViewData["DonorId"] = new SelectList(_context.DonorInfo, "DonorId", "DonorName", donorDetail.DonorId);
-            ViewData["PaymentMethod"] = new SelectList(_context.Payment, "OrderDetailId", "PaymentMethods", donorDetail.PaymentMethod);
+            ViewData["PaymentMethod"] = new SelectList(_context.Payment, "DonorDetailId", "PaymentMethods", donorDetail.PaymentMethod);
             return View(donorDetail);
         }
 
@@ -86,8 +89,9 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
             {
                 return NotFound();
             }
+            ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryName", donorDetail.CategoryId);
             ViewData["DonorId"] = new SelectList(_context.DonorInfo, "DonorId", "DonorName", donorDetail.DonorId);
-            ViewData["PaymentMethod"] = new SelectList(_context.Payment, "OrderDetailId", "PaymentMethods", donorDetail.PaymentMethod);
+            ViewData["PaymentMethod"] = new SelectList(_context.Payment, "DonorDetailId", "PaymentMethods", donorDetail.PaymentMethod);
             return View(donorDetail);
         }
 
@@ -96,7 +100,7 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OrderDetailId,DonorId,Amount,PaymentMethod")] DonorDetail donorDetail)
+        public async Task<IActionResult> Edit(int id, [Bind("OrderDetailId,DonorId,Amount,CategoryId,PaymentMethod")] DonorDetail donorDetail)
         {
             if (id != donorDetail.OrderDetailId)
             {
@@ -123,8 +127,9 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryName", donorDetail.CategoryId);
             ViewData["DonorId"] = new SelectList(_context.DonorInfo, "DonorId", "DonorName", donorDetail.DonorId);
-            ViewData["PaymentMethod"] = new SelectList(_context.Payment, "OrderDetailId", "PaymentMethods", donorDetail.PaymentMethod);
+            ViewData["PaymentMethod"] = new SelectList(_context.Payment, "DonorDetailId", "PaymentMethods", donorDetail.PaymentMethod);
             return View(donorDetail);
         }
 
@@ -137,6 +142,7 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
             }
 
             var donorDetail = await _context.DonorDetail
+                .Include(d => d.Category)
                 .Include(d => d.DonorInfo)
                 .Include(d => d.Payments)
                 .FirstOrDefaultAsync(m => m.OrderDetailId == id);
