@@ -2,33 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NGOManagementSystem.Data;
 using NGOManagementSystem.Models;
 
-namespace NGOManagementSystem.Areas.Hub.Controllers
+namespace NGOManagementSystem.Areas.Donor.Controllers
 {
-    [Area("Hub")]
-    [Authorize]
-    public class CategoriesController : Controller
+    [Area("Donor")]
+    public class PaymentsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public CategoriesController(ApplicationDbContext context)
+        public PaymentsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Hub/Categories
+        // GET: Donor/Payments
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Category.ToListAsync());
+            return View(await _context.Payment.ToListAsync());
         }
 
-        // GET: Hub/Categories/Details/5
+        // GET: Donor/Payments/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -36,39 +34,39 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
-            if (category == null)
+            var payment = await _context.Payment
+                .FirstOrDefaultAsync(m => m.DonorDetailId == id);
+            if (payment == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(payment);
         }
 
-        // GET: Hub/Categories/Create
+        // GET: Donor/Payments/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Hub/Categories/Create
+        // POST: Donor/Payments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryId,CategoryName")] Category category)
+        public async Task<IActionResult> Create([Bind("DonorDetailId,BankName,AccountNO,IFSC,PaymentMethods")] Payment payment)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(category);
+                _context.Add(payment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(payment);
         }
 
-        // GET: Hub/Categories/Edit/5
+        // GET: Donor/Payments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -76,22 +74,22 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category.FindAsync(id);
-            if (category == null)
+            var payment = await _context.Payment.FindAsync(id);
+            if (payment == null)
             {
                 return NotFound();
             }
-            return View(category);
+            return View(payment);
         }
 
-        // POST: Hub/Categories/Edit/5
+        // POST: Donor/Payments/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryName")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("DonorDetailId,BankName,AccountNO,IFSC,PaymentMethods")] Payment payment)
         {
-            if (id != category.CategoryId)
+            if (id != payment.DonorDetailId)
             {
                 return NotFound();
             }
@@ -100,12 +98,12 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
             {
                 try
                 {
-                    _context.Update(category);
+                    _context.Update(payment);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryExists(category.CategoryId))
+                    if (!PaymentExists(payment.DonorDetailId))
                     {
                         return NotFound();
                     }
@@ -116,10 +114,10 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(payment);
         }
 
-        // GET: Hub/Categories/Delete/5
+        // GET: Donor/Payments/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -127,30 +125,30 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
-            if (category == null)
+            var payment = await _context.Payment
+                .FirstOrDefaultAsync(m => m.DonorDetailId == id);
+            if (payment == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(payment);
         }
 
-        // POST: Hub/Categories/Delete/5
+        // POST: Donor/Payments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var category = await _context.Category.FindAsync(id);
-            _context.Category.Remove(category);
+            var payment = await _context.Payment.FindAsync(id);
+            _context.Payment.Remove(payment);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategoryExists(int id)
+        private bool PaymentExists(int id)
         {
-            return _context.Category.Any(e => e.CategoryId == id);
+            return _context.Payment.Any(e => e.DonorDetailId == id);
         }
     }
 }

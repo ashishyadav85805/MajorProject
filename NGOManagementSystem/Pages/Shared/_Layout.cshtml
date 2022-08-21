@@ -6,12 +6,94 @@
     <title>@ViewData["Title"] - NGOManagementSystem</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/main.css" />
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container" >
-                <p style="background-image:url('bg1.jpg')"> <a class="navbar-brand" asp-area="" asp-page="/Index">  <img src="~/imgs/lord-krishna.png" height="70px;"> Krishna Foundation</a></p>
+<body >
+    
+
+        <header class="continer-fluid ">
+
+            <div id="menu-jk" class="header-bottom">
+                <div class="container" style="background-image:url('bg1.jpg')">
+                    <div class="row nav-row">
+                        <div class="col-lg-3 col-md-12 logo">
+                            <a href="index.html">
+                                <img src="~/imgs/lord-krishna.png" height="70px;" alt=""><b> Krishna Foundation </b>
+                                <a data-toggle="collapse" data-target="#menu" href="#menu"><i class="fas d-block d-lg-none  small-menu fa-bars"></i></a>
+                            </a>
+
+                        </div>
+                        <div id="menu" class="col-lg-9 col-md-12 d-none d-lg-block nav-col">
+
+                            <ul class="navbad">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                                </li>
+
+
+                                @*   <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                                </li>*@
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><b>Manager</b></a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item"
+                                           asp-area="Hub" asp-controller="Categories" asp-action="Index">Campaigns</a>
+                                        <a class="dropdown-item"
+                                           asp-area="Hub" asp-controller="DonorInfoes" asp-action="Index">Donors</a>
+                                        <a class="dropdown-item"
+                                           asp-area="Hub" asp-controller="DonorDetails" asp-action="Index">Donors-Details </a>
+                                        <a class="dropdown-item"
+                                           asp-area="Hub" asp-controller="Payments" asp-action="Index">Payment</a>
+
+
+                                    </div>
+
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><b>User</b></a>
+                                    <div class="dropdown-menu">
+
+                                        <a class="dropdown-item  "
+                                           asp-area="Donor" asp-controller="DonorInfoes" asp-action="Create">NEW Donor</a>
+                                        <a class="dropdown-item "
+                                           asp-area="Donor" asp-controller="DonorDetails" asp-action="Create">Donor Details </a>
+
+
+
+                                    </div>
+
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="Donor" asp-controller="DonorInfoes" asp-action="Create">Donote</a>
+                                </li>
+
+                            </ul>
+
+                            <div>
+                                <a>
+                                    <partial name="_LoginPartial" />
+                                </a>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        
+
+
+
+
+      @* <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container" style="background-image:url('bg1.jpg')">
+                 <a class="navbar-brand" asp-area="" asp-page="/Index">  <img src="~/imgs/lord-krishna.png" height="70px;"> Krishna Foundation</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -46,9 +128,9 @@
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><b>User</b></a>
                             <div class="dropdown-menu">
                                 
-                                <a class="dropdown-item"
+                                <a class="dropdown-item  "
                                    asp-area="Donor" asp-controller="DonorInfoes" asp-action="Index">NEW Donor</a>
-                                <a class="dropdown-item"
+                                <a class="dropdown-item "
                                    asp-area="Donor" asp-controller="DonorDetails" asp-action="Index">Donor Details </a>
 
 
@@ -63,10 +145,10 @@
 
                     </ul>
                 </div>
-                   @* Inserting the Login Partial View *@
+                Inserting the Login Partial View 
                 <partial name="_LoginPartial" />
             </div>
-        </nav>
+        </nav>*@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -74,11 +156,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - Krishna Foundation NGO - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
+   
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

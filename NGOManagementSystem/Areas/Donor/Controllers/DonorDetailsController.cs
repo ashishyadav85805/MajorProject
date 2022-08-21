@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NGOManagementSystem.Data;
 using NGOManagementSystem.Models;
 
-namespace NGOManagementSystem.Areas.Hub.Controllers
+namespace NGOManagementSystem.Areas.Donor.Controllers
 {
-    [Area("Hub")]
-    [Authorize]
+    [Area("Donor")]
     public class DonorDetailsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,14 +20,14 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
             _context = context;
         }
 
-        // GET: Hub/DonorDetails
+        // GET: Donor/DonorDetails
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.DonorDetail.Include(d => d.Category).Include(d => d.DonorInfo).Include(d => d.Payments);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Hub/DonorDetails/Details/5
+        // GET: Donor/DonorDetails/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -50,7 +48,7 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
             return View(donorDetail);
         }
 
-        // GET: Hub/DonorDetails/Create
+        // GET: Donor/DonorDetails/Create
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryName");
@@ -59,7 +57,7 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
             return View();
         }
 
-        // POST: Hub/DonorDetails/Create
+        // POST: Donor/DonorDetails/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -78,7 +76,7 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
             return View(donorDetail);
         }
 
-        // GET: Hub/DonorDetails/Edit/5
+        // GET: Donor/DonorDetails/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -97,7 +95,7 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
             return View(donorDetail);
         }
 
-        // POST: Hub/DonorDetails/Edit/5
+        // POST: Donor/DonorDetails/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -135,7 +133,7 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
             return View(donorDetail);
         }
 
-        // GET: Hub/DonorDetails/Delete/5
+        // GET: Donor/DonorDetails/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -156,7 +154,7 @@ namespace NGOManagementSystem.Areas.Hub.Controllers
             return View(donorDetail);
         }
 
-        // POST: Hub/DonorDetails/Delete/5
+        // POST: Donor/DonorDetails/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
