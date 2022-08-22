@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using NGOManagementSystem.Data;
 using NGOManagementSystem.Models;
 
-namespace NGOManagementSystem.Areas.Donor.Controllers
+namespace NGOManagementSystem.Areas.Admin.Controllers
 {
-    [Area("Donor")]
+    [Area("Admin")]
     public class DonorDetailsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -20,14 +20,14 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
             _context = context;
         }
 
-        // GET: Donor/DonorDetails
+        // GET: Admin/DonorDetails
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.DonorDetail.Include(d => d.Category).Include(d => d.Paytms).Include(d => d.donorInfo);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Donor/DonorDetails/Details/5
+        // GET: Admin/DonorDetails/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -48,7 +48,7 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
             return View(donorDetail);
         }
 
-        // GET: Donor/DonorDetails/Create
+        // GET: Admin/DonorDetails/Create
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryName");
@@ -57,7 +57,7 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
             return View();
         }
 
-        // POST: Donor/DonorDetails/Create
+        // POST: Admin/DonorDetails/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -76,7 +76,7 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
             return View(donorDetail);
         }
 
-        // GET: Donor/DonorDetails/Edit/5
+        // GET: Admin/DonorDetails/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -95,7 +95,7 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
             return View(donorDetail);
         }
 
-        // POST: Donor/DonorDetails/Edit/5
+        // POST: Admin/DonorDetails/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -133,7 +133,7 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
             return View(donorDetail);
         }
 
-        // GET: Donor/DonorDetails/Delete/5
+        // GET: Admin/DonorDetails/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -154,7 +154,7 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
             return View(donorDetail);
         }
 
-        // POST: Donor/DonorDetails/Delete/5
+        // POST: Admin/DonorDetails/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

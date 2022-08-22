@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NGOManagementSystem.Models.DonorInfo>
+﻿@model IEnumerable<NGOManagementSystem.Models.Volunteer>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,7 +13,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.DonorName)
+                @Html.DisplayNameFor(model => model.VolunteerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Address)
@@ -24,6 +27,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Qualification)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -31,7 +37,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.DonorName)
+                @Html.DisplayFor(modelItem => item.VolunteerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Address)
@@ -43,14 +52,14 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.DonorId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.DonorId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.DonorId">Delete</a>
+                @Html.DisplayFor(modelItem => item.Qualification)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.VolunteerId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.VolunteerId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.VolunteerId">Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
-<div class="btn btn-dark">
-    <a asp-area="Donor" asp-controller="DonorDetails" asp-action="Create" style="color:white">Next</a>
-</div>

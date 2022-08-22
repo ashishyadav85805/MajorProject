@@ -12,6 +12,13 @@ namespace NGOManagementSystem.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int DonorDetailId { get; set; }
 
+        #region Navigation Properties to the DonorInfo Model
+        [Display(Name = "Donor Name")]
+        public int DonorId { get; set; }
+        [ForeignKey(nameof(Payment.DonorId))]
+        public DonorInfo DonorInfo { get; set; }
+
+        #endregion
 
         [Required]
         [Column(TypeName = "varchar(50)")]
@@ -29,14 +36,16 @@ namespace NGOManagementSystem.Models
         public string IFSC { get; set; }
 
 
+        #region Navigation Properties to the Paytm Model
+        [Display(Name = "Payment Options")]
+        public int PaytmMethod { get; set; }
+        [ForeignKey(nameof(Payment.PaytmMethod))]
+        public Paytm Paytms { get; set; }
 
-        [Required(ErrorMessage = "{0} cannot be empty!")]
-        [Column(TypeName = "varchar(50)")]
-        [Display(Name = "Payment Methods")]
-        public string PaymentMethods { get; set; }
 
-        #region Navigation Properties to the OrderDetails Model
-        public ICollection<DonorDetail> DonorDetails { get; set; }
         #endregion
+
+       
+
     }
 }

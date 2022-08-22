@@ -1,29 +1,31 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 namespace NGOManagementSystem.Models
 {
-    [Table(name: "DonorInfo")]
-
-    public class DonorInfo
+    [Table(name: "Volunteer")]
+    public class Volunteer
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-
-        public int DonorId { get; set; }
+        public int VolunteerId { get; set; }
 
         [Required(ErrorMessage = "{0} cannot be empty!")]
         [Column(TypeName = "varchar(50)")]
         [Display(Name = "Name of the Customer")]
-        public string DonorName { get; set; }
+        public string VolunteerName { get; set; }
+
+        [Required(ErrorMessage = "{0} cannot be empty")]
+        [Column(TypeName = "varchar(100)")]
+        [Display(Name = "Age")]
+        public string Age{ get; set; }
 
 
         [Required(ErrorMessage = "{0} cannot be empty")]
         [Column(TypeName = "varchar(100)")]
         [Display(Name = "Address")]
-
         public string Address { get; set; }
 
 
@@ -36,16 +38,14 @@ namespace NGOManagementSystem.Models
         [Required(ErrorMessage = "{0} cannot be empty")]
         [Column(TypeName = "varchar(100)")]
         [Display(Name = "E-Mail Id")]
-
         public string Email { get; set; }
 
 
-        #region Navigation Properties to the OrderDetail Model
-        public ICollection<DonorDetail> DonorDetails { get; set; }
-        #endregion
+        [Required(ErrorMessage = "{0} cannot be empty")]
+        [Column(TypeName = "varchar(100)")]
+        [Display(Name = "Qualification ")]
+        public string Qualification { get; set; }
 
-        #region Navigation Properties to the OrderDetail Model
-        public ICollection<Payment> Payments { get; set; }
-        #endregion
+
     }
 }

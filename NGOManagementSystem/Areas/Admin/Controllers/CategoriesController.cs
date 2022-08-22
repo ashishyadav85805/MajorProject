@@ -8,25 +8,25 @@ using Microsoft.EntityFrameworkCore;
 using NGOManagementSystem.Data;
 using NGOManagementSystem.Models;
 
-namespace NGOManagementSystem.Areas.Donor.Controllers
+namespace NGOManagementSystem.Areas.Admin.Controllers
 {
-    [Area("Donor")]
-    public class DonorInfoesController : Controller
+    [Area("Admin")]
+    public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public DonorInfoesController(ApplicationDbContext context)
+        public CategoriesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Donor/DonorInfoes
+        // GET: Admin/Categories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.DonorInfo.ToListAsync());
+            return View(await _context.Category.ToListAsync());
         }
 
-        // GET: Donor/DonorInfoes/Details/5
+        // GET: Admin/Categories/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,39 +34,39 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
                 return NotFound();
             }
 
-            var donorInfo = await _context.DonorInfo
-                .FirstOrDefaultAsync(m => m.DonorId == id);
-            if (donorInfo == null)
+            var category = await _context.Category
+                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return View(donorInfo);
+            return View(category);
         }
 
-        // GET: Donor/DonorInfoes/Create
+        // GET: Admin/Categories/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Donor/DonorInfoes/Create
+        // POST: Admin/Categories/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DonorId,DonorName,Address,PhoneNumber,Email")] DonorInfo donorInfo)
+        public async Task<IActionResult> Create([Bind("CategoryId,CategoryName")] Category category)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(donorInfo);
+                _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(donorInfo);
+            return View(category);
         }
 
-        // GET: Donor/DonorInfoes/Edit/5
+        // GET: Admin/Categories/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,22 +74,22 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
                 return NotFound();
             }
 
-            var donorInfo = await _context.DonorInfo.FindAsync(id);
-            if (donorInfo == null)
+            var category = await _context.Category.FindAsync(id);
+            if (category == null)
             {
                 return NotFound();
             }
-            return View(donorInfo);
+            return View(category);
         }
 
-        // POST: Donor/DonorInfoes/Edit/5
+        // POST: Admin/Categories/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DonorId,DonorName,Address,PhoneNumber,Email")] DonorInfo donorInfo)
+        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryName")] Category category)
         {
-            if (id != donorInfo.DonorId)
+            if (id != category.CategoryId)
             {
                 return NotFound();
             }
@@ -98,12 +98,12 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
             {
                 try
                 {
-                    _context.Update(donorInfo);
+                    _context.Update(category);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DonorInfoExists(donorInfo.DonorId))
+                    if (!CategoryExists(category.CategoryId))
                     {
                         return NotFound();
                     }
@@ -114,10 +114,10 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(donorInfo);
+            return View(category);
         }
 
-        // GET: Donor/DonorInfoes/Delete/5
+        // GET: Admin/Categories/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -125,30 +125,30 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
                 return NotFound();
             }
 
-            var donorInfo = await _context.DonorInfo
-                .FirstOrDefaultAsync(m => m.DonorId == id);
-            if (donorInfo == null)
+            var category = await _context.Category
+                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return View(donorInfo);
+            return View(category);
         }
 
-        // POST: Donor/DonorInfoes/Delete/5
+        // POST: Admin/Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var donorInfo = await _context.DonorInfo.FindAsync(id);
-            _context.DonorInfo.Remove(donorInfo);
+            var category = await _context.Category.FindAsync(id);
+            _context.Category.Remove(category);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool DonorInfoExists(int id)
+        private bool CategoryExists(int id)
         {
-            return _context.DonorInfo.Any(e => e.DonorId == id);
+            return _context.Category.Any(e => e.CategoryId == id);
         }
     }
 }

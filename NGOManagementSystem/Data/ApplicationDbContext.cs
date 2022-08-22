@@ -24,6 +24,10 @@ namespace NGOManagementSystem.Data
 
         public DbSet<NGOManagementSystem.Models.Payment> Payment { get; set; }
 
+        public DbSet<NGOManagementSystem.Models.Paytm> Paytm { get; set; }
+
+        public DbSet<NGOManagementSystem.Models.Volunteer> Volunteer { get; set; }
+
 
 
 

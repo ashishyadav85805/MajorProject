@@ -1,21 +1,27 @@
-﻿@model NGOManagementSystem.Models.DonorInfo
+﻿@model NGOManagementSystem.Models.Volunteer
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Create</h1>
+<h1>Edit</h1>
 
-<h4>DonorInfo</h4>
+<h4>Volunteer</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="VolunteerId" />
             <div class="form-group">
-                <label asp-for="DonorName" class="control-label"></label>
-                <input asp-for="DonorName" class="form-control" />
-                <span asp-validation-for="DonorName" class="text-danger"></span>
+                <label asp-for="VolunteerName" class="control-label"></label>
+                <input asp-for="VolunteerName" class="form-control" />
+                <span asp-validation-for="VolunteerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Address" class="control-label"></label>
@@ -33,10 +39,12 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="Qualification" class="control-label"></label>
+                <input asp-for="Qualification" class="form-control" />
+                <span asp-validation-for="Qualification" class="text-danger"></span>
             </div>
-            <div class="btn btn-dark">
-                <a asp-area="Donor" asp-controller="DonorDetails" asp-action="Create" style="color:white">Next</a>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>

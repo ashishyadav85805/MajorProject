@@ -10,15 +10,11 @@ namespace NGOManagementSystem.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderDetailId { get; set; }
 
-
-
         #region Navigation Properties to the DonorInfo Model
         [Display(Name = "Donor Name")]
         public int DonorId { get; set; }
-
         [ForeignKey(nameof(DonorDetail.DonorId))]
-
-        public DonorInfo DonorInfo { get; set; }
+        public DonorInfo donorInfo{ get; set; }
 
         #endregion
 
@@ -28,8 +24,7 @@ namespace NGOManagementSystem.Models
         [Display(Name = "Amount")]
         public string Amount { get; set; }
 
-
-        #region Navigation Properties to the OrderDetail Model
+        #region Navigation Properties to the DonorInfo Model
 
         [Display(Name = "Choose Category")]
         public int CategoryId { get; set; }
@@ -41,11 +36,11 @@ namespace NGOManagementSystem.Models
 
 
 
-        #region Navigation Properties to the Payment Model
+        #region Navigation Properties to the Paytm Model
         [Display(Name = "Payment Options")]
-        public int PaymentMethod { get; set; }
-        [ForeignKey(nameof(DonorDetail.PaymentMethod))]
-        public Payment Payments { get; set; }
+        public int PaytmMethod { get; set; }
+        [ForeignKey(nameof(Payment.PaytmMethod))]
+        public Paytm Paytms { get; set; }
 
 
         #endregion

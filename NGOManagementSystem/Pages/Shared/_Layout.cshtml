@@ -39,13 +39,15 @@
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><b>Manager</b></a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item"
-                                           asp-area="Hub" asp-controller="Categories" asp-action="Index">Campaigns</a>
+                                           asp-area="Admin" asp-controller="Categories" asp-action="Index">Campaigns</a>
                                         <a class="dropdown-item"
-                                           asp-area="Hub" asp-controller="DonorInfoes" asp-action="Create">Donors</a>
+                                           asp-area="Admin" asp-controller="DonorInfoes" asp-action="Create">Donors</a>
                                         <a class="dropdown-item"
-                                           asp-area="Hub" asp-controller="DonorDetails" asp-action="Index">Donors-Details </a>
+                                           asp-area="Admin" asp-controller="DonorDetails" asp-action="Index">Donors-Details </a>
                                         <a class="dropdown-item"
-                                           asp-area="Hub" asp-controller="Payments" asp-action="Index">Payment</a>
+                                           asp-area="Admin" asp-controller="Payments" asp-action="Index">Payment</a>
+                                    <a class="dropdown-item"
+                                       asp-area="Hub" asp-controller="Volunteers" asp-action="Create">Volunteer</a>
 
 
                                     </div>
@@ -53,12 +55,15 @@
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><b>User</b></a>
+
                                     <div class="dropdown-menu">
 
                                         <a class="dropdown-item  "
                                            asp-area="Donor" asp-controller="DonorInfoes" asp-action="Create">NEW Donor</a>
-                                        <a class="dropdown-item "
-                                           asp-area="Donor" asp-controller="DonorDetails" asp-action="Create">Donor Details </a>
+                                    <a class="dropdown-item"
+                                       asp-area="Donor" asp-controller="Volunteers" asp-action="Create">Volunteer</a>
+                                        @*<a class="dropdown-item "
+                                           asp-area="Donor" asp-controller="DonorDetails" asp-action="Create">Donor Details </a>*@
 
 
 

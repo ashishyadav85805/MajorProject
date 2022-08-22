@@ -31,7 +31,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                    @Html.DisplayFor(modelItem => item.donorInfo.DonorName)
+                @Html.DisplayFor(modelItem => item.donorInfo.DonorName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Amount)
@@ -52,5 +52,5 @@
     </tbody>
 </table>
 <div class="btn btn-dark">
-    <a asp-area="Donor" asp-controller="Payments" asp-action="Create" style="color:white">Next</a>
+    <a asp-area="Admin" asp-controller="Payments" asp-action="Create" style="color:white">Next</a>
 </div>

@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using NGOManagementSystem.Data;
 using NGOManagementSystem.Models;
 
-namespace NGOManagementSystem.Areas.Donor.Controllers
+namespace NGOManagementSystem.Areas.Admin.Controllers
 {
-    [Area("Donor")]
+    [Area("Admin")]
     public class PaymentsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -20,14 +20,14 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
             _context = context;
         }
 
-        // GET: Donor/Payments
+        // GET: Admin/Payments
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Payment.Include(p => p.DonorInfo).Include(p => p.Paytms);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Donor/Payments/Details/5
+        // GET: Admin/Payments/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -47,7 +47,7 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
             return View(payment);
         }
 
-        // GET: Donor/Payments/Create
+        // GET: Admin/Payments/Create
         public IActionResult Create()
         {
             ViewData["DonorId"] = new SelectList(_context.DonorInfo, "DonorId", "DonorName");
@@ -55,7 +55,7 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
             return View();
         }
 
-        // POST: Donor/Payments/Create
+        // POST: Admin/Payments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -73,7 +73,7 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
             return View(payment);
         }
 
-        // GET: Donor/Payments/Edit/5
+        // GET: Admin/Payments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,7 +91,7 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
             return View(payment);
         }
 
-        // POST: Donor/Payments/Edit/5
+        // POST: Admin/Payments/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -128,7 +128,7 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
             return View(payment);
         }
 
-        // GET: Donor/Payments/Delete/5
+        // GET: Admin/Payments/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -148,7 +148,7 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
             return View(payment);
         }
 
-        // POST: Donor/Payments/Delete/5
+        // POST: Admin/Payments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
