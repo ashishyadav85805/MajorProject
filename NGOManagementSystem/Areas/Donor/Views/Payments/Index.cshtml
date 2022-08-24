@@ -4,12 +4,13 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+@*<h1>Index</h1>*@
 
-<p>
+@*<p>
     <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+</p>*@
+<table class="table" style="background-color:lightblue">
+    
     <thead>
         <tr>
             <th>
@@ -32,7 +33,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+            <tr style="background-color:lightgray">
             <td>
                     @Html.DisplayFor(modelItem => item.DonorInfo.DonorName)
             </td>
@@ -49,11 +50,12 @@
                 @Html.DisplayFor(modelItem => item.Paytms.PaytmMethods)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.DonorDetailId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.DonorDetailId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.DonorDetailId">Delete</a>
+                @*<a asp-action="Edit" asp-route-id="@item.DonorDetailId">Edit</a> |*@
+                    <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.DonorDetailId">Details</a>
+                    @* <a asp-action="Delete" asp-route-id="@item.DonorDetailId">Delete</a>*@
             </td>
         </tr>
 }
     </tbody>
 </table>
+<a class="btn btn-dark" asp-area="" asp-page="/Index"><b>Home</b></a>

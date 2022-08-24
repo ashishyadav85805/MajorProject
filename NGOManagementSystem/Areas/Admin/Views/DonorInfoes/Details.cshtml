@@ -9,7 +9,7 @@
 <div>
     <h4>DonorInfo</h4>
     <hr />
-    <dl class="row">
+    <dl class="row" style="background-color:lightblue">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.DonorName)
         </dt>
@@ -37,6 +37,7 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.DonorId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-dark" asp-action="Edit" asp-route-id="@Model.DonorId">Edit</a> |
+    <a class="btn btn-dark" asp-area="" asp-page="/Index"><b>Home</b></a> |
+    <a class="btn btn-dark" asp-action="Index">Back to List</a>
 </div>

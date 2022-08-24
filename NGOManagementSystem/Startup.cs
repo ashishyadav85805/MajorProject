@@ -42,6 +42,7 @@ namespace NGOManagementSystem
             // and store the data in the ApplicationDbContext
             services
                 .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
 

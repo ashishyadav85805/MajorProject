@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NGOManagementSystem.Data;
 using NGOManagementSystem.Models;
 
-namespace NGOManagementSystem.Areas.Admin.Controllers
+namespace NGOManagementSystem.Areas.Donor.Controllers
 {
-    [Area("Admin")]
-    [Authorize(Roles="NGO")]
+    [Area("Donor")]
     public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -23,13 +20,13 @@ namespace NGOManagementSystem.Areas.Admin.Controllers
             _context = context;
         }
 
-        // GET: Admin/Categories
+        // GET: Donor/Categories
         public async Task<IActionResult> Index()
         {
             return View(await _context.Category.ToListAsync());
         }
 
-        // GET: Admin/Categories/Details/5
+        // GET: Donor/Categories/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -47,13 +44,13 @@ namespace NGOManagementSystem.Areas.Admin.Controllers
             return View(category);
         }
 
-        // GET: Admin/Categories/Create
+        // GET: Donor/Categories/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Categories/Create
+        // POST: Donor/Categories/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -69,7 +66,7 @@ namespace NGOManagementSystem.Areas.Admin.Controllers
             return View(category);
         }
 
-        // GET: Admin/Categories/Edit/5
+        // GET: Donor/Categories/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,7 +82,7 @@ namespace NGOManagementSystem.Areas.Admin.Controllers
             return View(category);
         }
 
-        // POST: Admin/Categories/Edit/5
+        // POST: Donor/Categories/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -120,7 +117,7 @@ namespace NGOManagementSystem.Areas.Admin.Controllers
             return View(category);
         }
 
-        // GET: Admin/Categories/Delete/5
+        // GET: Donor/Categories/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -138,7 +135,7 @@ namespace NGOManagementSystem.Areas.Admin.Controllers
             return View(category);
         }
 
-        // POST: Admin/Categories/Delete/5
+        // POST: Donor/Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

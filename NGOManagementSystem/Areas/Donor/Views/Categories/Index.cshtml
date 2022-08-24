@@ -6,10 +6,9 @@
 
 <h1>Index</h1>
 
-<p>
-    <a class="btn btn-dark" asp-action="Create">Create New</a>
-</p>
-<br/>
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
 <table class="table">
     <thead>
         <tr style="background-color:lightblue">
@@ -22,13 +21,13 @@
     <tbody>
 @foreach (var item in Model) {
             <tr style="background-color:lightgray">
-            <td>
+            <td  >
                 @Html.DisplayFor(modelItem => item.CategoryName)
             </td>
             <td>
-                    <a class="btn btn-dark" asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a> |
-                    <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.CategoryId">Details</a> |
-                    <a class="btn btn-dark" asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
+                @*<a asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a> |*@
+                    <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.CategoryId">Details</a> 
+                @*<a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>*@
             </td>
         </tr>
 }

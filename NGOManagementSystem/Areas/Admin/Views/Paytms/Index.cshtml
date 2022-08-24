@@ -7,11 +7,12 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-dark" asp-action="Create">Create New</a>
 </p>
+<br/>
 <table class="table">
     <thead>
-        <tr>
+        <tr style="background-color:lightblue">
             <th>
                 @Html.DisplayNameFor(model => model.PaytmMethods)
             </th>
@@ -20,14 +21,14 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+            <tr style="background-color:lightgray">
             <td>
                 @Html.DisplayFor(modelItem => item.PaytmMethods)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.PaytmId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PaytmId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PaytmId">Delete</a>
+                    <a class="btn btn-dark" asp-action="Edit" asp-route-id="@item.PaytmId">Edit</a> |
+                    <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.PaytmId">Details</a> |
+                    <a class="btn btn-dark" asp-action="Delete" asp-route-id="@item.PaytmId">Delete</a>
             </td>
         </tr>
 }

@@ -10,7 +10,7 @@
 <div>
     <h4>Paytm</h4>
     <hr />
-    <dl class="row">
+    <dl class="row" style="background-color:lightblue">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.PaytmMethods)
         </dt>
@@ -22,6 +22,6 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="PaytmId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a class="btn btn-dark" asp-action="Index">Back to List</a>
     </form>
 </div>
