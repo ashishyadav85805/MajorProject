@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/main.css" />
 </head>
-<body>
+<body style="background-image:url('/ybg.png');  ">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container" style="background-image:url(bg1.jpg)">
+            <div class="container" style="background-image:url('/bg1.jpg')">
 
                 <a class="navbar-brand" asp-area="" asp-page="/Index">
                     <img src="~/img/lord-krishna.png" style="width:100px" /> &nbsp;<b style="color:orangered">Krishna </b><b>Foundation</b> &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
@@ -33,7 +33,7 @@
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><b>Manage</b></a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item"
-                                   asp-area="Admin" asp-controller="Categories" asp-action="Index">Categories</a>
+                                   asp-area="Admin" asp-controller="Categories" asp-action="Index">Campaigns</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item"
                                    asp-area="Admin" asp-controller="DonorInfoes" asp-action="Index">Donor Information</a>

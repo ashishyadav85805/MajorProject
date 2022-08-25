@@ -61,7 +61,7 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
             {
                 _context.Add(donorInfo);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", new {id=donorInfo.DonorId});
             }
             return View(donorInfo);
         }

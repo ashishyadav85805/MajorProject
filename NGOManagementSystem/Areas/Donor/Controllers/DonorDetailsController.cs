@@ -68,7 +68,7 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
             {
                 _context.Add(donorDetail);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details" , new {id=donorDetail.OrderDetailId});
             }
             ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryName", donorDetail.CategoryId);
             ViewData["PaytmMethod"] = new SelectList(_context.Paytm, "PaytmId", "PaytmMethods", donorDetail.PaytmMethod);

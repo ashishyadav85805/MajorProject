@@ -9,9 +9,10 @@
 <p>
     <a class="btn btn-dark" asp-action="Create">Create New</a>
 </p>
+<br/>
 <table class="table">
     <thead>
-        <tr>
+        <tr style="background-color:lightblue" ">
             <th>
                 @Html.DisplayNameFor(model => model.VolunteerName)
             </th>
@@ -56,8 +57,8 @@
             </td>
             <td>
                 @*<a asp-action="Edit" asp-route-id="@item.VolunteerId">Edit</a> |*@
-                <a asp-action="Details" asp-route-id="@item.VolunteerId">Details</a> 
-               @* <a asp-action="Delete" asp-route-id="@item.VolunteerId">Delete</a>*@
+                <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.VolunteerId" style="color:white">Details</a>
+                @* <a asp-action="Delete" asp-route-id="@item.VolunteerId">Delete</a>*@
             </td>
         </tr>
 }

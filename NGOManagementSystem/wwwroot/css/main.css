@@ -103,11 +103,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 body {
-    background-color: #f1f1f145 !important;
+   
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    color: #6A6A6A;
+    
     overflow-x: hidden;
 }
 

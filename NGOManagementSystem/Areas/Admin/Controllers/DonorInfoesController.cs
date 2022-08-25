@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +13,7 @@ using NGOManagementSystem.Models;
 namespace NGOManagementSystem.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "NGO")]
     public class DonorInfoesController : Controller
     {
         private readonly ApplicationDbContext _context;

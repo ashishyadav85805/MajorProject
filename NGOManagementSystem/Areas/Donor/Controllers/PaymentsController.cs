@@ -27,6 +27,12 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
+        public async Task<IActionResult> Index1()
+        {
+            var applicationDbContext = _context.Payment.Include(p => p.DonorInfo).Include(p => p.Paytms);
+            return View(await applicationDbContext.ToListAsync());
+        }
+
         // GET: Donor/Payments/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -66,7 +72,7 @@ namespace NGOManagementSystem.Areas.Donor.Controllers
             {
                 _context.Add(payment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details" , new {id=payment.DonorDetailId});
             }
             ViewData["DonorId"] = new SelectList(_context.DonorInfo, "DonorId", "DonorName", payment.DonorId);
             ViewData["PaytmMethod"] = new SelectList(_context.Paytm, "PaytmId", "PaytmMethods", payment.PaytmMethod);

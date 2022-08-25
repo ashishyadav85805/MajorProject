@@ -9,7 +9,7 @@
 <div>
     <h4>Payment</h4>
     <hr />
-    <dl class="row" class="row" style="background-color:lightblue">
+    <dl class="row" style="background-color:lightblue">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.DonorInfo)
         </dt>
@@ -44,6 +44,7 @@
 </div>
 <div>
     @*<a asp-action="Edit" asp-route-id="@Model.DonorDetailId">Edit</a> |*@
+    <a class="btn btn-dark" asp-area="Donor" asp-controller="Payments" asp-action="Index1" style="color:white">Submit</a>
     <a class="btn btn-dark" asp-area="" asp-page="/Index"><b>Home</b></a>
-    <a class="btn btn-dark" asp-action="Index">Back to List</a>
+    <a class="btn btn-dark" asp-action="Create">Back to List</a>
 </div>

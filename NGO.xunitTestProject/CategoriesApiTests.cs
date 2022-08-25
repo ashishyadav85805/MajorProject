@@ -6,12 +6,11 @@ using Xunit;
 using Xunit.Abstractions;
 using Moq;
 using Microsoft.Extensions.Logging;
-
+using NGOManagementSystem.Controllers;
+using NGOManagementSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using FluentAssertions;
-using NGOManagementSystem.Data;
-using NGOManagementSystem.Models;
-using NGOManagementSystem.Controllers;
+
 
 // NOTE:
 // Add the following NuGet PACKAGES:
@@ -20,7 +19,7 @@ using NGOManagementSystem.Controllers;
 //      Microsoft.EntityFrameworkCore.InMemory      (same version as EFCore in the LMS.Web project
 // Also add REFERENCE to the LMS.Web Project
 
-namespace LMS.xUnitTestProject
+namespace NGO.xUnitTestProject
 {
     public partial class CategoriesApiTests
     {

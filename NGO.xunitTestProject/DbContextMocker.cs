@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using NGOManagementSystem.Data;
 using NGOManagementSystem.Models;
 
-namespace LMS.xUnitTestProject
+namespace NGO.xUnitTestProject
 {
     public static class DbContextMocker
     {
