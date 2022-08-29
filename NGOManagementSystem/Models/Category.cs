@@ -9,7 +9,7 @@ namespace NGOManagementSystem.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Display(Name = "Category ID")]
+        [Display(Name = "Category ID")]    //Category id
         public int CategoryId { get; set; }
 
 
@@ -17,7 +17,7 @@ namespace NGOManagementSystem.Models
         [Column(TypeName = "varchar(50)")]
         [Display(Name = "Name of the Category")]
 
-        public string CategoryName { get; set; }
+        public string CategoryName { get; set; } // Caterory Name
 
         #region Navigation Properties to the donorinfo Model
 

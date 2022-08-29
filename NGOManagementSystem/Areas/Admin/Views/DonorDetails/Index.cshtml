@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p>
-    <a class="btn btn-dark" asp-action="Create">Create New</a>
+    @*<a class="btn btn-dark" asp-action="Create">Create New</a>*@
 </p>
 <br/>
 <table class="table"style="background-color:lightblue">
@@ -45,7 +45,7 @@
                 @Html.DisplayFor(modelItem => item.Paytms.PaytmMethods)
             </td>
             <td>
-                    <a class="btn btn-dark" asp-action="Edit" asp-route-id="@item.OrderDetailId">Edit</a> |
+@*                    <a class="btn btn-dark" asp-action="Edit" asp-route-id="@item.OrderDetailId">Edit</a> |*@
                     <a class="btn btn-dark" class="btn btn-dark" asp-action="Details" asp-route-id="@item.OrderDetailId">Details</a> |
                     <a class="btn btn-dark" asp-action="Delete" asp-route-id="@item.OrderDetailId">Delete</a>
             </td>

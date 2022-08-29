@@ -46,17 +46,17 @@ namespace NGO.xUnitTestProject
                 new Category
                 {
                     CategoryId = 1, 
-                    CategoryName = "First Category"
+                    CategoryName = "Shisha Na Ruke"
                 },
                 new Category
                 {
                     CategoryId = 2,
-                    CategoryName = "Second Category"
+                    CategoryName = "Child Education"
                 },
                 new Category
                 {
                     CategoryId = 3,
-                    CategoryName = "Third Category"
+                    CategoryName = "Assam Food Releif"
                 }
             };
 

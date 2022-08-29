@@ -13,12 +13,15 @@ namespace NGOManagementSystem.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
         public int DonorId { get; set; }
+        
+        //Donor Name
 
         [Required(ErrorMessage = "{0} cannot be empty!")]
         [Column(TypeName = "varchar(50)")]
         [Display(Name = "Name of the Customer")]
         public string DonorName { get; set; }
 
+        //Donor Address
 
         [Required(ErrorMessage = "{0} cannot be empty")]
         [Column(TypeName = "varchar(100)")]
@@ -26,12 +29,14 @@ namespace NGOManagementSystem.Models
 
         public string Address { get; set; }
 
+        //Donor Phone No
 
         [Required]
         [Column(TypeName = "varchar(50)")]
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
 
+        //Donor Email id
 
         [Required(ErrorMessage = "{0} cannot be empty")]
         [Column(TypeName = "varchar(100)")]
@@ -40,7 +45,7 @@ namespace NGOManagementSystem.Models
         public string Email { get; set; }
 
 
-        #region Navigation Properties to the OrderDetail Model
+        #region Navigation Properties to the DonorDetail Model
         public ICollection<DonorDetail> DonorDetails { get; set; }
         #endregion
 
